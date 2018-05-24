@@ -1,0 +1,40 @@
+{
+  "name": "@comandeer/ckeditor4-plugin-placeholdertext",
+  "version": "0.0.0",
+  "description": "Simple CKEditor 4 plugin that adds placeholder text to the editor.",
+  "main": "plugin.js",
+  "scripts": {
+    "lint": "eslint -c dev/config/eslint/default.json src/**/*.js",
+    "test": "cd ../../ && bender server run -c plugins/placeholdertext/dev/config/bender/default.js",
+    "precommit": "npm run lint",
+    "postversion": "git push origin && git push origin --tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Comandeer/ckeditor4-plugin-boilerplate.git"
+  },
+  "keywords": [
+    "CKEditor4",
+    "plugin"
+  ],
+  "files": [
+    "plugin.js",
+    "dialogs",
+    "icons",
+    "images",
+    "lang"
+  ],
+  "author": {
+    "name": "Comandeer",
+    "url": "https://www.comandeer.pl"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Comandeer/ckeditor4-boilerplate/issues"
+  },
+  "homepage": "https://github.com/Comandeer/ckeditor4-boilerplate#readme",
+  "devDependencies": {
+    "eslint": "^4.1.0",
+    "husky": "^0.14.0"
+  }
+}
