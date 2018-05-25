@@ -1,5 +1,5 @@
 /* bender-tags: editor */
-/* bender-ckeditor-plugins: wysiwygarea,placeholdertext,toolbar */
+/* bender-ckeditor-plugins: wysiwygarea,placeholdertext,toolbar,undo */
 
 ( function() {
 	'use strict';
@@ -57,10 +57,64 @@
 			}, 150 );
 
 			wait();
-		}
+		},
+
+		'test placeholder does not generate an undo step': function( editor, bot ) {
+			editor.resetUndo();
+
+			editor.editable().$.focus();
+
+			setTimeout( function() {
+				resume( function() {
+					bot.setData( 'whatever', function() {
+						var snapshots = editor.undoManager.snapshots;
+
+						// Safari sometimes generates one more snapshot, but with the same content.
+						if ( CKEDITOR.env.safari && snapshots.length > 2 ) {
+							assert.areSame( 3, snapshots.length );
+							assert.isTrue( snapshots[ 0 ].equalsContent( snapshots[ 1 ] ) );
+						} else {
+							assert.areSame( 2, snapshots.length );
+						}
+
+					} );
+				} );
+			}, 150 );
+
+			wait();
+		},
 	};
 
 	tests = bender.tools.createTestsForEditors( CKEDITOR.tools.objectKeys( bender.editors ), tests );
+
+	tests[ 'test if template is customisable' ] = function() {
+		var oldTemplate = CKEDITOR.plugins.placeholdertext.template;
+
+		CKEDITOR.plugins.placeholdertext.template = '<p class="hublabubla">Test</p>';
+
+		bender.editorBot.create( {
+			name: 'template_custom',
+			config: {
+				placeholdertext: 'Whatever'
+			}
+		}, function( bot ) {
+			var editor = bot.editor;
+
+			CKEDITOR.plugins.placeholdertext.template = oldTemplate;
+
+			assert.areSame( 1, editor.editable().find( 'p.hublabubla' ).count() );
+		} );
+	};
+
+	tests[ 'test not applying placeholder if config.placeholdertext is not set' ] = function() {
+		bender.editorBot.create( {
+			name: 'no_config'
+		}, function( bot ) {
+			var editor = bot.editor;
+
+			assert.areSame( 0, editor.editable().find( '[data-cke-placeholdertext]' ).count() );
+		} );
+	};
 
 	bender.test( tests );
 }() );
