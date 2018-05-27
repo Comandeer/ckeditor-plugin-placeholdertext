@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Comandeer/ckeditor4-plugin-boilerplate.git"
+    "url": "git+https://github.com/Comandeer/ckeditor-plugin-placeholdertext.git"
   },
   "keywords": [
     "CKEditor4",
@@ -30,9 +30,9 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Comandeer/ckeditor4-boilerplate/issues"
+    "url": "https://github.com/Comandeer/ckeditor-plugin-placeholdertext/issues"
   },
-  "homepage": "https://github.com/Comandeer/ckeditor4-boilerplate#readme",
+  "homepage": "https://github.com/Comandeer/ckeditor-plugin-placeholdertext#readme",
   "devDependencies": {
     "eslint": "^4.1.0",
     "husky": "^0.14.0"
