@@ -14,7 +14,7 @@
 
 	<h2>Non-empty classic editor</h2>
 	<div id="nonempty-classic">
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate tempora nisi ad, totam architecto reiciendis ea! Cupiditate doloribus ab vel magni placeat et, quo tempore vero sequi. Earum, possimus deserunt eum. Illo itaque totam expedita iusto saepe, accusamus harum vero dolores magni, nesciunt distinctio repellat obcaecati ea odit dignissimos excepturi.</p>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 	</div>
 
 	<button data-getData="nonempty-classic">Get editor's data</button>
@@ -28,7 +28,7 @@
 
 	<h2>Non-empty divarea editor</h2>
 	<div id="nonempty-divarea">
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate tempora nisi ad, totam architecto reiciendis ea! Cupiditate doloribus ab vel magni placeat et, quo tempore vero sequi. Earum, possimus deserunt eum. Illo itaque totam expedita iusto saepe, accusamus harum vero dolores magni, nesciunt distinctio repellat obcaecati ea odit dignissimos excepturi.</p>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 	</div>
 
 	<button data-getData="nonempty-divarea">Get editor's data</button>
@@ -42,7 +42,7 @@
 
 	<h2>Non-empty inline editor</h2>
 	<div id="nonempty-inline" contenteditable="true">
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate tempora nisi ad, totam architecto reiciendis ea! Cupiditate doloribus ab vel magni placeat et, quo tempore vero sequi. Earum, possimus deserunt eum. Illo itaque totam expedita iusto saepe, accusamus harum vero dolores magni, nesciunt distinctio repellat obcaecati ea odit dignissimos excepturi.</p>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 	</div>
 
 	<button data-getData="nonempty-inline">Get editor's data</button>
@@ -51,7 +51,8 @@
 	<script>
 		( function() {
 			var commonConfig = {
-					placeholdertext: 'Type your comment'
+					placeholdertext: 'Type your comment',
+					height: 100
 				},
 				forEach = CKEDITOR.tools.array.forEach,
 				buttons = CKEDITOR.document.find( 'button[data-getData]' ).toArray();
@@ -90,7 +91,7 @@
 				var editorId = button.getAttribute( 'data-getData' );
 
 				button.on( 'click', function() {
-					CKEDITOR.document.getById( editorId + '-data' ).setHtml( CKEDITOR.instances[ editorId ].getData() );
+					CKEDITOR.document.getById( editorId + '-data' ).setText( CKEDITOR.instances[ editorId ].getData() );
 				} );
 			} );
 		}() );
