@@ -15,7 +15,7 @@
 	 * @singleton
 	 * @class CKEDITOR.plugins.placeholdertext
 	 */
-	var config = {
+	var pluginNamespace = {
 		/**
 		 * Template, which will be used to create placeholder element.
 		 *
@@ -42,7 +42,7 @@
 
 	function applyPlaceholder( evt ) {
 		var editor = evt.listenerData.editor,
-			placeholder = config.template.replace( '{PLACEHOLDER}', editor.config.placeholdertext );
+			placeholder = pluginNamespace.template.replace( '{PLACEHOLDER}', editor.config.placeholdertext );
 
 		if ( isEditorEmpty( editor ) ) {
 			editor.editable().setHtml( placeholder );
@@ -81,7 +81,7 @@
 
 	CKEDITOR.plugins.add( 'placeholdertext', {
 		onLoad: function() {
-			CKEDITOR.addCss( config.styles );
+			CKEDITOR.addCss( pluginNamespace.styles );
 		},
 
 		init: function( editor ) {
@@ -97,7 +97,7 @@
 		}
 	} );
 
-	CKEDITOR.plugins.placeholdertext = config;
+	CKEDITOR.plugins.placeholdertext = pluginNamespace;
 
 	/**
 	 * Text that will be used as a placeholder inside the editor.
